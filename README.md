@@ -307,7 +307,7 @@ networks:
 
 ## Tecnologías Utilizadas
 
-- **.NET 8**: Framework de desarrollo
+- **.NET 9**: Framework de desarrollo
 - **ASP.NET Core**: Framework web para APIs
 - **Docker**: Containerización
 - **Docker Compose**: Orquestación de contenedores
