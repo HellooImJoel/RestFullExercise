@@ -69,14 +69,12 @@ namespace RestApiService.Controllers
     [Route("api/[controller]")]
     public class InventoryController : ControllerBase
     {
-        // Almacén en memoria para simular una base de datos
         private static readonly Dictionary<string, int> Stock = new()
         {
             ["P001"] = 100,
             ["P002"] = 50
         };
 
-        // GET: api/inventory/check/{productId}/{quantity}
         [HttpGet("check/{productId}/{quantity}")]
         public IActionResult CheckStock(string productId, int quantity)
         {
@@ -84,10 +82,14 @@ namespace RestApiService.Controllers
             return Ok(new { ProductId = productId, Available = available });
         }
 
-        // POST: api/inventory/order
         [HttpPost("order")]
         public IActionResult CreateOrder([FromBody] OrderRequest request)
         {
+            if (string.IsNullOrEmpty(request.ProductId))
+            {
+                return BadRequest(new { Success = false, Message = "ProductId is required." });
+            }
+
             if (Stock.TryGetValue(request.ProductId, out var stockQty) && stockQty >= request.Quantity)
             {
                 Stock[request.ProductId] -= request.Quantity;
@@ -97,10 +99,9 @@ namespace RestApiService.Controllers
         }
     }
 
-    // Modelo para las solicitudes de pedido
     public class OrderRequest
     {
-        public string ProductId { get; set; } = string.Empty;
+        public string? ProductId { get; set; }
         public int Quantity { get; set; }
     }
 }
