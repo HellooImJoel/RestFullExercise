@@ -2,7 +2,7 @@
 
 ## Introducción
 
-Este proyecto implementa un ejercicio práctico de comunicación en sistemas distribuidos mediante REST Full API utilizando C# y .NET 8. El sistema consta de dos componentes principales:
+Este proyecto implementa un ejercicio práctico de comunicación en sistemas distribuidos mediante REST Full API utilizando C# y .NET 9 El sistema consta de dos componentes principales:
 
 - **RestApiService**: Una API REST que maneja operaciones de inventario
 - **RestApiClient**: Un cliente de consola que consume los servicios de la API
@@ -195,13 +195,13 @@ Console.ReadKey();
 Crear `RestApiClient/Dockerfile`:
 
 ```dockerfile
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 WORKDIR /src
 COPY . .
 RUN dotnet restore
 RUN dotnet publish -c Release -o /app/publish
 
-FROM mcr.microsoft.com/dotnet/runtime:8.0 AS final
+FROM mcr.microsoft.com/dotnet/runtime:9.0 AS final
 WORKDIR /app
 COPY --from=build /app/publish .
 ENTRYPOINT ["dotnet", "RestApiClient.dll"]
