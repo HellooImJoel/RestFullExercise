@@ -296,15 +296,6 @@ networks:
         -d '{"ProductId":"P001","Quantity":3}'
    ```
 
-## Extensiones Sugeridas
-
-- **Swagger/OpenAPI**: Documentación automática de la API
-- **Persistencia**: Integración con SQLite o SQL Server
-- **Validación**: Validación de modelos con Data Annotations
-- **Logging**: Implementar logging estructurado
-- **Testing**: Pruebas unitarias e integración
-- **Health Checks**: Endpoints para monitoreo de salud
-
 ## Tecnologías Utilizadas
 
 - **.NET 9**: Framework de desarrollo
