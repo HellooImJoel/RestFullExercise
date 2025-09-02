@@ -1,0 +1,12 @@
+version: "3.9"
+services:
+  restapi:
+    build: ./RestApiService
+    container_name: restapi
+    ports:
+      - "5000:80"
+  client:
+    build: ./RestApiClient
+    container_name: restapi-client
+    depends_on:
+      - restapi
